@@ -28,33 +28,6 @@ router.post('/updatePersonalDetails', async (req, res) => {
 
 
 
-// POST route to update user's personal details by email
-router.post('/updatePersonalDetails', async (req, res) => {
-    const { email, personalDetails } = req.body;
-
-    try {
-        let updateFields = {};
-        for (let key in personalDetails) {
-            updateFields[`personalDetails.${key}`] = personalDetails[key];
-        }
-
-        // Find the user by email and update the specified fields in personalDetails
-        const updatedUser = await studentData.findOneAndUpdate(
-            { email },
-            { $set: updateFields },
-            { new: true } // To return the updated document
-        );
-
-        if (!updatedUser) {
-            return res.status(404).json({ message: 'User not found' });
-        }
-
-        res.status(200).json(updatedUser);
-    } catch (err) {
-        res.status(500).json({ message: err.message });
-    }
-});
-
 
 
 
