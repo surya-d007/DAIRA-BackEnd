@@ -26,6 +26,10 @@ email: {
       type: String,
       default: null
     },
+    Degree: {
+      type: String,
+      default: null
+    },
     mobileNo: {
       type: String,
       default: null
@@ -35,6 +39,22 @@ email: {
       default: null
     },
     github: {
+      type: String,
+      default: null
+    },
+    profileImgLink: {
+      type: String,
+      default: null
+    },
+    WhichYear : {
+      type: String,
+      default: null
+    },
+    CGPA: {
+      type: String,
+      default: null
+    },
+    Batch: {
       type: String,
       default: null
     },
@@ -94,6 +114,7 @@ email: {
     }],
     default: []
   },
+
   workExperience: {
     type: [{
       workTitle: {
@@ -106,7 +127,28 @@ email: {
       }
     }],
     default: []
+  },
+
+
+  
+  Interests: {
+    type: [{
+      InterestTitle: {
+        type: String,
+        required: true
+      },
+      description: {
+        type: String,
+        required: true
+      }
+    }],
+    default: []
   }
+
+
+
+
+
 } , { collection: 'studentData' } );
 
 

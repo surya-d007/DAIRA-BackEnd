@@ -41,7 +41,10 @@ const verifyFirebaseToken = require('./Auth/verifyFirebaseToken');
 
 const userGetDetailsRouter = require('./routes/Logged');
 
-const updateProfileStudentRouter = require('./routes/student/profileUpdate/StudentProfileUpdate');
+const getStudrntProfileDetailsRouter = require('./routes/student/profileGetdetails/profileGetDetails');
+
+//const updateProfileStudentRouter = require('./routes/student/profileUpdate/StudentProfileUpdate');
+const updateProfileStudentRouter = require('./routes/student/profileUpdate/new');
 
 const deleteProfileStudentRouter = require('./routes/student/profileDelete/StudentProfileDelete');
 
@@ -49,6 +52,8 @@ const deleteProfileStudentRouter = require('./routes/student/profileDelete/Stude
 
 
 app.use('/Logged', verifyFirebaseToken, userGetDetailsRouter);
+
+app.use('/studentProfile/getDeatils', verifyFirebaseToken, getStudrntProfileDetailsRouter);
 app.use('/studentProfile/Update', verifyFirebaseToken, updateProfileStudentRouter);
 app.use('/studentProfile/delete', verifyFirebaseToken, deleteProfileStudentRouter);
 

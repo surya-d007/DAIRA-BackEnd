@@ -127,6 +127,8 @@ router.post('/updateProjectPortfolio', async (req, res) => {
 
 
 
+
+
 router.post('/updateProjectsAppliedIds', async (req, res) => {
     const { email, projectId } = req.body;
 
@@ -172,6 +174,34 @@ router.post('/updateMentorshipAppliedIds', async (req, res) => {
         res.status(500).json({ message: err.message });
     }
 });
+
+
+
+
+
+router.post('/updateInterest', async (req, res) => {
+    const { email, InterestTitle , description } = req.body;
+
+    try {
+        // Find the user by email and update the skills array
+        const updatedUser = await studentData.findOneAndUpdate(
+            { email },
+            { $push: { Interests: { InterestTitle, description } } },
+            { new: true } // To return the updated document
+        );
+
+        if (!updatedUser) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+
+        res.status(200).json(updatedUser);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+});
+
+
+
 
 
 module.exports = router;

@@ -17,7 +17,8 @@ router.post('/deleteItem', async (req, res) => {
                     workExperience: { _id: id },
                     certification: { _id: id },
                     skills: { _id: id },
-                    projectPortfolio: { _id: id }
+                    projectPortfolio: { _id: id },
+                    Interests : {_id : id}
                 }
             },
             { new: true } // To return the updated document
