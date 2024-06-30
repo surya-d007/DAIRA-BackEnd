@@ -2,6 +2,32 @@ const express = require('express');
 const router = express.Router();
 const studentData = require('../../../models/studentDataModel');
 
+
+
+
+// Route to update personal details
+router.post('/updatePersonalDetails', async (req, res) => {
+    const { email, personalDetails } = req.body;
+
+    try {
+        const updatedUser = await studentData.findOneAndUpdate(
+            { email },
+            { personalDetails: personalDetails },
+            { new: true }  // Return the updated document
+        );
+
+        if (!updatedUser) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+
+        res.status(200).json(updatedUser);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+});
+
+
+
 // POST route to update user's personal details by email
 router.post('/updatePersonalDetails', async (req, res) => {
     const { email, personalDetails } = req.body;
@@ -30,15 +56,16 @@ router.post('/updatePersonalDetails', async (req, res) => {
 });
 
 
-router.post('/updateSkill', async (req, res) => {
-    const { email, skillTitle, skills } = req.body;
+
+
+router.post('/updateProjects', async (req, res) => {
+    const { email, projectPortfolio } = req.body;
 
     try {
-        // Find the user by email and update the skills array
         const updatedUser = await studentData.findOneAndUpdate(
             { email },
-            { $push: { skills: { skillTitle, skills } } },
-            { new: true } // To return the updated document
+            { projectPortfolio: projectPortfolio },
+            { new: true }
         );
 
         if (!updatedUser) {
@@ -54,15 +81,14 @@ router.post('/updateSkill', async (req, res) => {
 
 
 
-router.post('/updatecertification', async (req, res) => {
-    const { email, certTitle, description } = req.body;
+router.post('/updateCertifications', async (req, res) => {
+    const { email, certification } = req.body;
 
     try {
-        // Find the user by email and update the skills array
         const updatedUser = await studentData.findOneAndUpdate(
             { email },
-            { $push: { certification: { certTitle, description } } },
-            { new: true } // To return the updated document
+            { certification: certification },
+            { new: true }
         );
 
         if (!updatedUser) {
@@ -74,20 +100,17 @@ router.post('/updatecertification', async (req, res) => {
         res.status(500).json({ message: err.message });
     }
 });
-
-
 
 
 
 router.post('/updateWorkExperience', async (req, res) => {
-    const { email, workTitle, description } = req.body;
+    const { email, workExperience } = req.body;
 
     try {
-        // Find the user by email and update the skills array
         const updatedUser = await studentData.findOneAndUpdate(
             { email },
-            { $push: { workExperience: { workTitle, description } } },
-            { new: true } // To return the updated document
+            { workExperience: workExperience },
+            { new: true }
         );
 
         if (!updatedUser) {
@@ -102,17 +125,14 @@ router.post('/updateWorkExperience', async (req, res) => {
 
 
 
-
-
-router.post('/updateProjectPortfolio', async (req, res) => {
-    const { email, projTitle, projDescription } = req.body;
+router.post('/updateInterests', async (req, res) => {
+    const { email, Interests } = req.body;
 
     try {
-        // Find the user by email and update the skills array
         const updatedUser = await studentData.findOneAndUpdate(
             { email },
-            { $push: { projectPortfolio: { projTitle, projDescription } } },
-            { new: true } // To return the updated document
+            { Interests: Interests },
+            { new: true }
         );
 
         if (!updatedUser) {
@@ -127,16 +147,14 @@ router.post('/updateProjectPortfolio', async (req, res) => {
 
 
 
-
-
-router.post('/updateProjectsAppliedIds', async (req, res) => {
-    const { email, projectId } = req.body;
+router.post('/updateSkill', async (req, res) => {
+    const { email, skills } = req.body;
 
     try {
-        // Find the user by email and update the projectsAppliedIds array
+        // Find the user by email and set the skills array to the new skills
         const updatedUser = await studentData.findOneAndUpdate(
             { email },
-            { $push: { projectsAppliedIds: projectId } },
+            { skills: skills }, // Replace the entire skills array
             { new: true } // To return the updated document
         );
 
@@ -149,58 +167,6 @@ router.post('/updateProjectsAppliedIds', async (req, res) => {
         res.status(500).json({ message: err.message });
     }
 });
-
-
-
-
-
-router.post('/updateMentorshipAppliedIds', async (req, res) => {
-    const { email, mentorshipIds } = req.body;
-
-    try {
-        // Find the user by email and update the projectsAppliedIds array
-        const updatedUser = await studentData.findOneAndUpdate(
-            { email },
-            { $push: { mentorshipAppliedIds: mentorshipIds } },
-            { new: true } // To return the updated document
-        );
-
-        if (!updatedUser) {
-            return res.status(404).json({ message: 'User not found' });
-        }
-
-        res.status(200).json(updatedUser);
-    } catch (err) {
-        res.status(500).json({ message: err.message });
-    }
-});
-
-
-
-
-
-router.post('/updateInterest', async (req, res) => {
-    const { email, InterestTitle , description } = req.body;
-
-    try {
-        // Find the user by email and update the skills array
-        const updatedUser = await studentData.findOneAndUpdate(
-            { email },
-            { $push: { Interests: { InterestTitle, description } } },
-            { new: true } // To return the updated document
-        );
-
-        if (!updatedUser) {
-            return res.status(404).json({ message: 'User not found' });
-        }
-
-        res.status(200).json(updatedUser);
-    } catch (err) {
-        res.status(500).json({ message: err.message });
-    }
-});
-
-
 
 
 

@@ -43,8 +43,8 @@ const userGetDetailsRouter = require('./routes/Logged');
 
 const getStudrntProfileDetailsRouter = require('./routes/student/profileGetdetails/profileGetDetails');
 
-//const updateProfileStudentRouter = require('./routes/student/profileUpdate/StudentProfileUpdate');
-const updateProfileStudentRouter = require('./routes/student/profileUpdate/new');
+
+const updateProfileStudentRouter = require('./routes/student/profileUpdate/StudentProfileUpdate');
 
 const deleteProfileStudentRouter = require('./routes/student/profileDelete/StudentProfileDelete');
 
