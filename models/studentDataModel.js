@@ -1,163 +1,165 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
-const userDataSchema = new mongoose.Schema({
-email: {
-    type: String,
-    unique :  true,
-    required : true,
-},
-password: {
-  type: String,
-  unique :  true,
-  required : true,
-},
-  personalDetails: {
-    name: {
+const userDataSchema = new mongoose.Schema(
+  {
+    email: {
       type: String,
-      default: null
+      unique: true,
+      required: true,
     },
-    role :{
-        type : String,
-        required : true,
-        default : "student",
-        enum: ['student', 'faculty', 'admin'],
-
-    },
-    universityName: {
+    password: {
       type: String,
-      default: null
+      required: true,
     },
-    branch: {
-      type: String,
-      default: null
-    },
-    Degree: {
-      type: String,
-      default: null
-    },
-    mobileNo: {
-      type: String,
-      default: null
-    },
-    place: {
-      type: String,
-      default: null
-    },
-    github: {
-      type: String,
-      default: null
-    },
-    profileImgLink: {
-      type: String,
-      default: null
-    },
-    WhichYear : {
-      type: String,
-      default: null
-    },
-    CGPA: {
-      type: String,
-      default: null
-    },
-    Batch: {
-      type: String,
-      default: null
-    },
-    linkedIn: {
-      type: String,
-      default: null
-    },
-    resumeLink: {
-      type: String,
-      default: null
-    }
-  },
-  projectsAppliedIds: {
-    type: [String],
-    default: []
-  },
-  mentorshipAppliedIds: {
-    type: [String],
-    default: []
-  },
-  projectPortfolio: {
-    type: [{
-      projTitle: {
+    personalDetails: {
+      name: {
         type: String,
-        required: true
+        default: null,
       },
-      projDescription: {
+      role: {
         type: String,
-        required: true
-      }
-    }],
-    default: []
-  },
-  skills: {
-    type: [{
-      skillTitle: {
-        type: String,
-        required: true
+        required: true,
+        default: "student",
+        enum: ["student", "faculty", "admin"],
       },
-      skills: {
+      universityName: {
         type: String,
-        required: true
-      }
-    }],
-    default: []
-  },
-  certification: {
-    type: [{
-      certTitle: {
-        type: String,
-        required: true
+        default: null,
       },
-      description: {
+      branch: {
         type: String,
-        required: true
-      }
-    }],
-    default: []
-  },
-
-  workExperience: {
-    type: [{
-      workTitle: {
-        type: String,
-        required: true
+        default: null,
       },
-      description: {
+      Degree: {
         type: String,
-        required: true
-      }
-    }],
-    default: []
-  },
-
-
-  
-  Interests: {
-    type: [{
-      InterestTitle: {
-        type: String,
-        required: true
+        default: null,
       },
-      description: {
+      mobileNo: {
         type: String,
-        required: true
-      }
-    }],
-    default: []
-  }
+        default: null,
+      },
+      place: {
+        type: String,
+        default: null,
+      },
+      github: {
+        type: String,
+        default: null,
+      },
+      profileImgLink: {
+        type: String,
+        default: null,
+      },
+      WhichYear: {
+        type: String,
+        default: null,
+      },
+      CGPA: {
+        type: String,
+        default: null,
+      },
+      Batch: {
+        type: String,
+        default: null,
+      },
+      linkedIn: {
+        type: String,
+        default: null,
+      },
+      resumeLink: {
+        type: String,
+        default: null,
+      },
+    },
+    projectsAppliedIds: {
+      type: [String],
+      default: [],
+    },
+    mentorshipAppliedIds: {
+      type: [String],
+      default: [],
+    },
+    projectPortfolio: {
+      type: [
+        {
+          projTitle: {
+            type: String,
+            required: true,
+          },
+          projDescription: {
+            type: String,
+            required: true,
+          },
+        },
+      ],
+      default: [],
+    },
+    skills: {
+      type: [
+        {
+          skillTitle: {
+            type: String,
+            required: true,
+          },
+          skills: {
+            type: String,
+            required: true,
+          },
+        },
+      ],
+      default: [],
+    },
+    certification: {
+      type: [
+        {
+          certTitle: {
+            type: String,
+            required: true,
+          },
+          description: {
+            type: String,
+            required: true,
+          },
+        },
+      ],
+      default: [],
+    },
 
+    workExperience: {
+      type: [
+        {
+          workTitle: {
+            type: String,
+            required: true,
+          },
+          description: {
+            type: String,
+            required: true,
+          },
+        },
+      ],
+      default: [],
+    },
 
+    Interests: {
+      type: [
+        {
+          InterestTitle: {
+            type: String,
+            required: true,
+          },
+          description: {
+            type: String,
+            required: true,
+          },
+        },
+      ],
+      default: [],
+    },
+  },
+  { collection: "studentData" }
+);
 
-
-
-} , { collection: 'studentData' } );
-
-
-
-const UserData = mongoose.model('UserData', userDataSchema);
+const UserData = mongoose.model("UserData", userDataSchema);
 
 module.exports = UserData;

@@ -1,160 +1,186 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
-const facultySchema = new mongoose.Schema({
-  email: {
-    type: String,
-    unique: true,
-    required: true
-  },
-  personalDetails: {
-    name: {
+const facultySchema = new mongoose.Schema(
+  {
+    email: {
       type: String,
-      required: true
-    },
-    role: {
-      type: String ,
+      unique: true,
       required: true,
-      default: 'faculty',
     },
-    universityName: {
+    password: {
       type: String,
-      required: true
+      required: true,
     },
-    department: {
-      type: String,
-      required: true
-    },
-    mobileNo: {
-      type: String,
-      required: true
-    },
-    linkedIn: {
-      type: String,
-      default: null
-    },
-    domain: {
-      type: String,
-      required: true
-    },
-    education: {
-      type: [{
-        degree: {
-          type: String,
-          required: true
-        },
-        institution: {
-          type: String,
-          required: true
-        },
-        year: {
-          type: Number,
-          required: true
-        }
-      }],
-      default: []
-    },
-    excellence: {
-      type: [{
-        title: {
-          type: String,
-          required: true
-        },
-        description: {
-          type: String,
-          required: true
-        },
-        year: {
-          type: Number,
-          required: true
-        }
-      }],
-      default: []
-    }
-  },
-  publications: {
-    type: [{
-      title: {
+    personalDetails: {
+      name: {
         type: String,
-        required: true
+        default: null,
       },
-      journal: {
+      profileimgURL: {
         type: String,
-        required: true
-      },
-      year: {
-        type: Number,
-        required: true
-      },
-      link: {
-        type: String,
-        required : true,
-        default: null
-      }
-    }],
-    default: []
-  },
-  coursesTaught: {
-    type: [{
-      courseTitle: {
-        type: String,
-        required: true
-      },
-      courseCode: {
-        type: String,
-        required: true
-      },
-      semester: {
-        type: String,
-        required: true
-      }
-    }],
-    default: []
-  },
-  professionalExperience: {
-    type: [{
-      organization: {
-        type: String,
-        required: true
+        default: null,
       },
       role: {
         type: String,
-        required: true
+        required: true,
+        default: "faculty",
       },
-      duration: {
+      universityName: {
         type: String,
-        required: true
+        default: null,
       },
-      description: {
+      department: {
         type: String,
-        default: null
-      }
-    }],
-    default: []
+        default: null,
+      },
+      school: {
+        type: String,
+        default: null,
+      },
+      mobileNo: {
+        type: String,
+        default: null,
+      },
+      linkedIn: {
+        type: String,
+        default: null,
+      },
+      domain: {
+        type: String,
+        default: null,
+      },
+      education: {
+        type: [
+          {
+            degree: {
+              type: String,
+              default: null,
+            },
+            institution: {
+              type: String,
+              default: null,
+            },
+            year: {
+              type: Number,
+              default: null,
+            },
+          },
+        ],
+        default: [],
+      },
+      excellence: {
+        type: [
+          {
+            title: {
+              type: String,
+              default: null,
+            },
+            description: {
+              type: String,
+              default: null,
+            },
+            year: {
+              type: Number,
+              default: null,
+            },
+          },
+        ],
+        default: [],
+      },
+    },
+    projectCreate: {
+      type: [String],
+      default: [],
+    },
+    publications: {
+      type: [
+        {
+          title: {
+            type: String,
+            required: true,
+          },
+          journal: {
+            type: String,
+            required: true,
+          },
+          year: {
+            type: Number,
+            required: true,
+          },
+          link: {
+            type: String,
+            required: true,
+            default: null,
+          },
+        },
+      ],
+      default: [],
+    },
+    coursesTaught: {
+      type: [
+        {
+          courseTitle: {
+            type: String,
+            required: true,
+          },
+          courseCode: {
+            type: String,
+            required: true,
+          },
+          semester: {
+            type: String,
+            required: true,
+          },
+        },
+      ],
+      default: [],
+    },
+    professionalExperience: {
+      type: [
+        {
+          organization: {
+            type: String,
+            required: true,
+          },
+          role: {
+            type: String,
+            required: true,
+          },
+          duration: {
+            type: String,
+            required: true,
+          },
+          description: {
+            type: String,
+            default: null,
+          },
+        },
+      ],
+      default: [],
+    },
+    certifications: {
+      type: [
+        {
+          title: {
+            type: String,
+            required: true,
+          },
+          organization: {
+            type: String,
+            required: true,
+          },
+          year: {
+            type: Number,
+            required: true,
+          },
+        },
+      ],
+      default: [],
+    },
   },
-  certifications: {
-    type: [{
-      title: {
-        type: String,
-        required: true
-      },
-      organization: {
-        type: String,
-        required: true
-      },
-      year: {
-        type: Number,
-        required: true
-      }
-    }],
-    default: []
-  }
-}, { collection: 'facultyData' });
+  { collection: "facultyData" }
+);
 
-const Faculty = mongoose.model('Faculty', facultySchema);
+const Faculty = mongoose.model("Faculty", facultySchema);
 
 module.exports = Faculty;
-
-
-
-
-
