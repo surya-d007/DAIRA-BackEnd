@@ -34,12 +34,12 @@ mongoose.connect(process.env.MONGODB_URI, {
 
 
 
-const verifyFirebaseToken = require('./Auth/verifyFirebaseToken');
+const verifyFirebaseToken = require('./Auth/middleWarejwtAuth');
 
 
 // Import user routes
 
-const userGetDetailsRouter = require('./routes/Logged');
+const userGetDetailsRouter = require('./routes/Auth');
 
 const getStudrntProfileDetailsRouter = require('./routes/student/profileGetdetails/profileGetDetails');
 
@@ -51,7 +51,7 @@ const deleteProfileStudentRouter = require('./routes/student/profileDelete/Stude
 
 
 
-app.use('/Logged', verifyFirebaseToken, userGetDetailsRouter);
+app.use('/Auth', userGetDetailsRouter);
 
 app.use('/studentProfile/getDeatils', verifyFirebaseToken, getStudrntProfileDetailsRouter);
 app.use('/studentProfile/Update', verifyFirebaseToken, updateProfileStudentRouter);

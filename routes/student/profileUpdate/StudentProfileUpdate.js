@@ -7,6 +7,7 @@ const studentData = require('../../../models/studentDataModel');
 
 // Route to update personal details
 router.post('/updatePersonalDetails', async (req, res) => {
+    console.log('hi');
     const { email, personalDetails } = req.body;
 
     try {
@@ -32,6 +33,7 @@ router.post('/updatePersonalDetails', async (req, res) => {
 
 
 router.post('/updateProjects', async (req, res) => {
+    console.log('hi');
     const { email, projectPortfolio } = req.body;
 
     try {
@@ -42,12 +44,15 @@ router.post('/updateProjects', async (req, res) => {
         );
 
         if (!updatedUser) {
+            console.log(1);
             return res.status(404).json({ message: 'User not found' });
         }
 
+        console.log(2);
         res.status(200).json(updatedUser);
     } catch (err) {
         res.status(500).json({ message: err.message });
+        console.log(err.message);
     }
 });
 
