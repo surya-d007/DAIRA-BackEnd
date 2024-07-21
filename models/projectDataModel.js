@@ -11,23 +11,19 @@ const projectSchema = new mongoose.Schema(
       enum: ["open", "closed"],
       default: null,
     },
-    projFacultyName: {
+    projFacultyEmail: {
       type: String,
       required: true,
-    },
-    projectFacImageUrl: {
-      type: String,
-      default: null,
-    },
-    school: {
-      type: String,
-      default: null,
     },
     projectName: {
       type: String,
       default: null,
     },
     projectDomain: {
+      type: String,
+      default: null,
+    },
+    target: {
       type: String,
       default: null,
     },
