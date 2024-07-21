@@ -49,106 +49,56 @@ const facultySchema = new mongoose.Schema(
         type: String,
         default: null,
       },
-      education: {
-        type: [
-          {
-            degree: {
-              type: String,
-              default: null,
-            },
-            institution: {
-              type: String,
-              default: null,
-            },
-            year: {
-              type: Number,
-              default: null,
-            },
-          },
-        ],
-        default: [],
-      },
-      excellence: {
-        type: [
-          {
-            title: {
-              type: String,
-              default: null,
-            },
-            description: {
-              type: String,
-              default: null,
-            },
-            year: {
-              type: Number,
-              default: null,
-            },
-          },
-        ],
-        default: [],
-      },
     },
-    projectCreate: {
-      type: [String],
-      default: [],
-    },
-    publications: {
+
+    education: {
       type: [
         {
-          title: {
+          degree: {
             type: String,
-            required: true,
+            default: null,
           },
-          journal: {
+          institution: {
             type: String,
-            required: true,
+            default: null,
           },
           year: {
             type: Number,
-            required: true,
-          },
-          link: {
-            type: String,
-            required: true,
             default: null,
           },
         },
       ],
       default: [],
     },
-    coursesTaught: {
+    AwardsAndAccolades: {
       type: [
         {
-          courseTitle: {
+          title: {
             type: String,
-            required: true,
+            default: null,
           },
-          courseCode: {
+          description: {
             type: String,
-            required: true,
+            default: null,
           },
-          semester: {
-            type: String,
-            required: true,
+          year: {
+            type: Number,
+            default: null,
           },
         },
       ],
       default: [],
     },
-    professionalExperience: {
+    Projects: {
+      type: [String],
+      default: [],
+    },
+    ProjectsAndPublications: {
       type: [
         {
-          organization: {
+          title: {
             type: String,
-            required: true,
-          },
-          role: {
-            type: String,
-            required: true,
-          },
-          duration: {
-            type: String,
-            required: true,
+            default: null,
           },
           description: {
             type: String,
@@ -158,20 +108,31 @@ const facultySchema = new mongoose.Schema(
       ],
       default: [],
     },
-    certifications: {
+    Expertise: {
       type: [
         {
           title: {
             type: String,
-            required: true,
+            default: null,
           },
-          organization: {
+          description: {
             type: String,
-            required: true,
+            default: null,
           },
-          year: {
-            type: Number,
-            required: true,
+        },
+      ],
+      default: [],
+    },
+    Experience: {
+      type: [
+        {
+          title: {
+            type: String,
+            default: null,
+          },
+          description: {
+            type: String,
+            default: null,
           },
         },
       ],
