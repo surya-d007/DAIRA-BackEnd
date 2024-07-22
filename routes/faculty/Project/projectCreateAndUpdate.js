@@ -56,4 +56,27 @@ router.post("/CreateProject", async (req, res) => {
   }
 });
 
+router.post("/getAllProjects", async (req, res) => {
+  const { email } = req.body;
+
+  try {
+    // Find the faculty document using the provided email
+    const faculty = await FacultyModel.findOne({ email });
+    if (!faculty) {
+      return res.status(404).json({ error: "Faculty not found" });
+    }
+
+    // Retrieve the project IDs from the faculty document
+    const projectIds = faculty.Projects;
+
+    // Fetch the project documents corresponding to the IDs
+    const projects = await ProjectModel.find({ _id: { $in: projectIds } });
+
+    res.status(200).json(projects);
+  } catch (error) {
+    console.error("Failed to retrieve projects:", error);
+    res.status(400).json({ error: "Failed to retrieve projects" });
+  }
+});
+
 module.exports = router;
