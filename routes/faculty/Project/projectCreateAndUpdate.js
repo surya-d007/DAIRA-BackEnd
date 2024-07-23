@@ -58,7 +58,6 @@ router.post("/CreateProject", async (req, res) => {
 
 router.post("/getAllProjects", async (req, res) => {
   const { email } = req.body;
-  const namee = surya;
 
   try {
     // Find the faculty document using the provided email
