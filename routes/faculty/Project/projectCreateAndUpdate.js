@@ -79,4 +79,53 @@ router.post("/getAllProjects", async (req, res) => {
   }
 });
 
+// Endpoint to edit an existing project
+router.post("/editProject", async (req, res) => {
+  const {
+    id,
+    FacEmail,
+    projectName,
+    projectDomain,
+    vacancies,
+    timeline,
+    criteria,
+    techStack,
+    skillsRequired,
+    perks,
+    target,
+  } = req.body;
+
+  try {
+    const project = await ProjectModel.findById(id);
+    if (!project) {
+      return res.status(404).json({ error: "Project not found" });
+    }
+
+    if (project.projFacultyEmail !== FacEmail) {
+      return res.status(403).json({
+        error: "Unauthorized: Email does not match project faculty email",
+      });
+    }
+
+    project.projectName = projectName;
+    project.projectDomain = projectDomain;
+    project.vacancies = vacancies;
+    project.timeline = timeline;
+    project.criteria = criteria;
+    project.techStack = techStack;
+    project.skillsRequired = skillsRequired;
+    project.perks = perks;
+    project.target = target;
+
+    const updatedProject = await project.save();
+    res.status(200).json({
+      message: "Project updated successfully!",
+      project: updatedProject,
+    });
+  } catch (error) {
+    console.error("Failed to update project:", error);
+    res.status(400).json({ error: "Failed to update project" });
+  }
+});
+
 module.exports = router;

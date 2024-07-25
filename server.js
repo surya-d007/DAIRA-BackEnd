@@ -38,6 +38,8 @@ const deleteProfileStudentRouter = require("./routes/student/profileDelete/Stude
 
 const facultyProject = require("./routes/faculty/Project/projectCreateAndUpdate");
 
+const studentProject = require("./routes/student/project/ProjectGetAndApply");
+
 app.use("/Auth", userGetDetailsRouter);
 
 app.use(
@@ -57,6 +59,8 @@ app.use(
 );
 
 app.use("/faculty/project", verifyFirebaseToken, facultyProject);
+
+app.use("/student/project", verifyFirebaseToken, studentProject);
 
 app.post("/verifyToken", verifyFirebaseToken, (req, res) => {
   // Your API logic here, accessed via req.user
