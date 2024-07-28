@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const ProjectModel = require("../../../models/projectDataModel");
 const FacultyModel = require("../../../models/facultyDataModel");
+const StudentModel = require("../../../models/studentDataModel");
 
 // Endpoint to add a new project
 router.post("/CreateProject", async (req, res) => {
@@ -125,6 +126,24 @@ router.post("/editProject", async (req, res) => {
   } catch (error) {
     console.error("Failed to update project:", error);
     res.status(400).json({ error: "Failed to update project" });
+  }
+});
+
+router.post("/getAppliedStudentDetails", async (req, res) => {
+  const { email } = req.body;
+
+  try {
+    // Find the student by email
+    const student = await StudentModel.findOne({ email });
+
+    if (!student) {
+      return res.status(404).json({ message: "Student not found" });
+    }
+
+    res.status(200).json(student);
+  } catch (error) {
+    console.error("Failed to retrieve student details:", error);
+    res.status(400).json({ error: "Failed to retrieve student details" });
   }
 });
 
