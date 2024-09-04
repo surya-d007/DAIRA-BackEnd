@@ -147,4 +147,76 @@ router.post("/getAppliedStudentDetails", async (req, res) => {
   }
 });
 
+router.post("/manageAppliedStudents", async (req, res) => {
+  const { _id, student, value } = req.body;
+
+  // Ensure value is one of the accepted statuses
+  let status;
+  if (value === "accept") status = "accepted";
+  else if (value === "reject") status = "rejected";
+  else if (value === "pending") status = "pending";
+  else {
+    return res.status(400).json({ error: "Invalid status value" });
+  }
+
+  try {
+    // Find the project by ID
+    const project = await ProjectModel.findById(_id);
+
+    if (!project) {
+      return res.status(404).json({ error: "Project not found" });
+    }
+
+    // Find the student in the studentsApplied array
+    const studentIndex = project.studentsApplied.findIndex(
+      (appliedStudent) => appliedStudent.student === student
+    );
+
+    if (studentIndex === -1) {
+      return res
+        .status(404)
+        .json({ error: "Student not found in applied students" });
+    }
+
+    // Update the status of the student
+    project.studentsApplied[studentIndex].status = status;
+
+    // Save the updated project
+    await project.save();
+
+    res
+      .status(200)
+      .json({ message: "Student application status updated successfully" });
+  } catch (error) {
+    console.error("Failed to manage applied students:", error);
+    res.status(400).json({ error: "Failed to manage applied students" });
+  }
+});
+
+router.post("/closeProject", async (req, res) => {
+  const { _id } = req.body;
+
+  try {
+    // Find the project by ID
+    const project = await ProjectModel.findById(_id);
+
+    if (!project) {
+      return res.status(404).json({ error: "Project not found" });
+    }
+
+    // Update the status to "closed"
+    project.status = "closed";
+
+    // Save the updated project
+    await project.save();
+
+    res
+      .status(200)
+      .json({ message: "Project status updated to closed successfully" });
+  } catch (error) {
+    console.error("Failed to update project status:", error);
+    res.status(400).json({ error: "Failed to update project status" });
+  }
+});
+
 module.exports = router;
