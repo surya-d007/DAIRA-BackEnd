@@ -64,7 +64,11 @@ app.use("/faculty/project", verifyFirebaseToken, facultyProject);
 
 app.use("/student/project", verifyFirebaseToken, studentProject);
 
-app.use("/student/ProfileBuilder", profileBuilderProjectRecommend);
+app.use(
+  "/student/ProfileBuilder",
+  verifyFirebaseToken,
+  profileBuilderProjectRecommend
+);
 
 app.post("/verifyToken", verifyFirebaseToken, (req, res) => {
   // Your API logic here, accessed via req.user
