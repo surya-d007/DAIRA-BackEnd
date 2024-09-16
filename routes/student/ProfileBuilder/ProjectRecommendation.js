@@ -4,7 +4,7 @@ const { GoogleGenerativeAI } = require("@google/generative-ai");
 const router = express.Router();
 
 // Replace with the API key you created in the Google Cloud Console
-const apiKey = "AIzaSyCXIG5dn5tfy_whaXYVV3ckdMrWrMfdaFw";
+const apiKey = process.env.apiKeyGemini;
 
 async function generateContent(query) {
   try {
@@ -45,47 +45,47 @@ router.post("/generateProjectsRecommondadtions", async (req, res) => {
     Overview: A drone equipped with sensors and software to collect and analyze data on crop health, pests, and soil conditions.,
     Market Trend: Precision agriculture techniques and the growing use of drones.`;
 
-    //var generatedText = await generateContent(query);
+    var generatedText = await generateContent(query);
 
-    var generatedText = `1. Title: Smart Patient Monitoring
-   Category: Remote Healthcare
-   Overview: A device or system that remotely monitors patients' vital signs and sends alerts to medical professionals in case of emergencies.
-   Market Trend: Increasing demand for remote healthcare and wearable devices.
+    //     var generatedText = `1. Title: Smart Patient Monitoring
+    //    Category: Remote Healthcare
+    //    Overview: A device or system that remotely monitors patients' vital signs and sends alerts to medical professionals in case of emergencies.
+    //    Market Trend: Increasing demand for remote healthcare and wearable devices.
 
-2. Title: Personalized Health Assistant
-   Category: Health Management
-   Overview: An AI-powered app that provides personalized health advice, diet recommendations, and medication reminders.  
-   Market Trend: Growing focus on preventive healthcare and self-management.
+    // 2. Title: Personalized Health Assistant
+    //    Category: Health Management
+    //    Overview: An AI-powered app that provides personalized health advice, diet recommendations, and medication reminders.
+    //    Market Trend: Growing focus on preventive healthcare and self-management.
 
-3. Title: Telemedicine Platform
-   Category: Healthcare Delivery
-   Overview: A platform that connects patients with healthcare professionals for virtual consultations, diagnoses, and prescriptions.
-   Market Trend: Expanding virtual healthcare and the need for convenient medical access.
+    // 3. Title: Telemedicine Platform
+    //    Category: Healthcare Delivery
+    //    Overview: A platform that connects patients with healthcare professionals for virtual consultations, diagnoses, and prescriptions.
+    //    Market Trend: Expanding virtual healthcare and the need for convenient medical access.
 
-4. Title: Mental Health Tracking App
-   Category: Mental Well-being
-   Overview: An app that tracks mood, sleep, and stress levels, provides coping mechanisms, and connects users with mental health resources.
-   Market Trend: Rising prevalence of mental health issues and demand for accessible support.
+    // 4. Title: Mental Health Tracking App
+    //    Category: Mental Well-being
+    //    Overview: An app that tracks mood, sleep, and stress levels, provides coping mechanisms, and connects users with mental health resources.
+    //    Market Trend: Rising prevalence of mental health issues and demand for accessible support.
 
-5. Title: Smart Home Care System
-   Category: Senior Care
-   Overview: A system that monitors the safety and well-being of seniors living alone, providing alerts and assistance in case of falls or emergencies.
-   Market Trend: Aging population and the need for innovative senior care solutions.
+    // 5. Title: Smart Home Care System
+    //    Category: Senior Care
+    //    Overview: A system that monitors the safety and well-being of seniors living alone, providing alerts and assistance in case of falls or emergencies.
+    //    Market Trend: Aging population and the need for innovative senior care solutions.
 
-6. Title: Nutrition Optimization Tool
-   Category: Dietary Health
-   Overview: A tool that analyzes dietary intake, provides personalized meal plans, and connects users with registered dietitians for support.
-   Market Trend: Growing awareness of the importance of healthy eating and personalized nutrition.
+    // 6. Title: Nutrition Optimization Tool
+    //    Category: Dietary Health
+    //    Overview: A tool that analyzes dietary intake, provides personalized meal plans, and connects users with registered dietitians for support.
+    //    Market Trend: Growing awareness of the importance of healthy eating and personalized nutrition.
 
-7. Title: Health Education Platform
-   Category: Community Health
-   Overview: A platform that provides accessible and engaging health education resources on topics such as preventive care, disease prevention, and healthy lifestyles.
-   Market Trend: Increasing demand for evidence-based health information.
+    // 7. Title: Health Education Platform
+    //    Category: Community Health
+    //    Overview: A platform that provides accessible and engaging health education resources on topics such as preventive care, disease prevention, and healthy lifestyles.
+    //    Market Trend: Increasing demand for evidence-based health information.
 
-8. Title: Fitness Tracking and Gamification App
-   Category: Physical Activity
-   Overview: An app that tracks fitness activities, rewards progress, and encourages healthy competition among users.     
-   Market Trend: Rising popularity of fitness tracking devices and the gamification of health and wellness.`;
+    // 8. Title: Fitness Tracking and Gamification App
+    //    Category: Physical Activity
+    //    Overview: An app that tracks fitness activities, rewards progress, and encourages healthy competition among users.
+    //    Market Trend: Rising popularity of fitness tracking devices and the gamification of health and wellness.`;
 
     generatedText = generatedText.replace(/\*/g, "");
 
@@ -208,35 +208,35 @@ router.post("/getKnowMoreProjectRecommend", async (req, res) => {
     
     `;
 
-    //const generatedInfo = await generateContent(query);
+    const generatedInfo = await generateContent(query);
 
-    var generatedInfo = `
-   **1. Relevance in India Market:**
-   The aging population and rising prevalence of chronic diseases in India create a significant demand for home health care services.
+    //   var generatedInfo = `
+    //  **1. Relevance in India Market:**
+    //  The aging population and rising prevalence of chronic diseases in India create a significant demand for home health care services.
 
-   **2. Government Policies:**
-   Government initiatives like the National Health Policy and Ayushman Bharat promote home-based care and encourage the adoption of technology in healthcare.
+    //  **2. Government Policies:**
+    //  Government initiatives like the National Health Policy and Ayushman Bharat promote home-based care and encourage the adoption of technology in healthcare.
 
-   **3. Impact:**
-   The platform empowers patients with access to quality home health care, improves their well-being, and reduces healthcare costs by enabling timely interventions.
+    //  **3. Impact:**
+    //  The platform empowers patients with access to quality home health care, improves their well-being, and reduces healthcare costs by enabling timely interventions.
 
-   **4. Goal:**
-   To provide a seamless and accessible platform for patients to connect with trusted and skilled home health care providers.
+    //  **4. Goal:**
+    //  To provide a seamless and accessible platform for patients to connect with trusted and skilled home health care providers.
 
-   **5. Knowledge Requirements:**
-   **Technical Stack:**
-   - Front-end Development: React/Redux, Bootstrap
-   - Back-end Development: Node.js, Express, MongoDB
-   - Cloud Computing: AWS/Azure
-   **Skills:**
-   - Healthcare Industry Knowledge
-   - Software Development
-   - UI/UX Design
-   **Tools:**
-   - IDE (e.g., Visual Studio Code)
-   - Version Control (e.g., Git)
-    - Project Management Tools (e.g., Jira, Trello)
-   `;
+    //  **5. Knowledge Requirements:**
+    //  **Technical Stack:**
+    //  - Front-end Development: React/Redux, Bootstrap
+    //  - Back-end Development: Node.js, Express, MongoDB
+    //  - Cloud Computing: AWS/Azure
+    //  **Skills:**
+    //  - Healthcare Industry Knowledge
+    //  - Software Development
+    //  - UI/UX Design
+    //  **Tools:**
+    //  - IDE (e.g., Visual Studio Code)
+    //  - Version Control (e.g., Git)
+    //   - Project Management Tools (e.g., Jira, Trello)
+    //  `;
 
     const parsedJson = parseGeneratedInfoToJson(generatedInfo);
 
