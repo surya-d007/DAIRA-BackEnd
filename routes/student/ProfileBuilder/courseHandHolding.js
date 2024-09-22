@@ -71,51 +71,52 @@ router.post("/generate-job-profiles", async (req, res) => {
 
   try {
     // Call the function to generate content from the AI model
-    const generatedText = await generateContent(prompt);
+    //const generatedText = await generateContent(prompt);
 
-    //     const generatedText = `
-    // **Title: Software Development Engineer**
-    // - **Skills Required:** Programming languages (Java, Python, React, Node.js), software design principles, agile methodologies
-    // - **Salary Expectation:** INR 6-9 lakhs per annum
-    // - **Description:** Design, develop, test, and maintain software applications, collaborate with cross-functional teams, and follow industry best practices.
+    const generatedText = `
+    **Title: Software Development Engineer**
+    - **Skills Required:** Programming languages (Java, Python, React, Node.js), software design principles, agile methodologies
+    - **Salary Expectation:** INR 6-9 lakhs per annum
+    - **Description:** Design, develop, test, and maintain software applications, collaborate with cross-functional teams, and follow industry best practices.
 
-    // **Title: Application Architect**
-    // - **Skills Required:** Advanced programming skills, software design patterns, cloud computing, distributed systems
-    // - **Salary Expectation:** INR 9-12 lakhs per annum
-    // - **Description:** Lead software development teams, design and implement scalable and robust software architectures, and mentor junior engineers.
+    **Title: Application Architect**
+    - **Skills Required:** Advanced programming skills, software design patterns, cloud computing, distributed systems
+    - **Salary Expectation:** INR 9-12 lakhs per annum
+    - **Description:** Lead software development teams, design and implement scalable and robust software architectures, and mentor junior engineers.
 
-    // **Title: Mobile Application Developer**
-    // - **Skills Required:** Mobile development frameworks (Android, iOS), mobile operating systems, user experience design
-    // - **Salary Expectation:** INR 5-8 lakhs per annum
-    // - **Description:** Build and maintain mobile applications, optimize for performance, and ensure user satisfaction by incorporating user feedback.
+    **Title: Mobile Application Developer**
+    - **Skills Required:** Mobile development frameworks (Android, iOS), mobile operating systems, user experience design
+    - **Salary Expectation:** INR 5-8 lakhs per annum
+    - **Description:** Build and maintain mobile applications, optimize for performance, and ensure user satisfaction by incorporating user feedback.
 
-    // **Title: Data Engineer**
-    // - **Skills Required:** Data management technologies (SQL, NoSQL), data mining techniques, cloud platforms (AWS, Azure)
-    // - **Salary Expectation:** INR 7-10 lakhs per annum
-    // - **Description:** Design and implement data pipelines, transform and analyze large datasets, and support data-driven decision-making in the organization.
+    **Title: Data Engineer**
+    - **Skills Required:** Data management technologies (SQL, NoSQL), data mining techniques, cloud platforms (AWS, Azure)
+    - **Salary Expectation:** INR 7-10 lakhs per annum
+    - **Description:** Design and implement data pipelines, transform and analyze large datasets, and support data-driven decision-making in the organization.
 
-    // **Title: Software Development Engineer**
-    // - **Skills Required:** Programming languages (Java, Python, React, Node.js), software design principles, agile methodologies
-    // - **Salary Expectation:** INR 6-9 lakhs per annum
-    // - **Description:** Design, develop, test, and maintain software applications, collaborate with cross-functional teams, and follow industry best practices.
+    **Title: Software Development Engineer**
+    - **Skills Required:** Programming languages (Java, Python, React, Node.js), software design principles, agile methodologies
+    - **Salary Expectation:** INR 6-9 lakhs per annum
+    - **Description:** Design, develop, test, and maintain software applications, collaborate with cross-functional teams, and follow industry best practices.
 
-    // **Title: Application Architect**
-    // - **Skills Required:** Advanced programming skills, software design patterns, cloud computing, distributed systems
-    // - **Salary Expectation:** INR 9-12 lakhs per annum
-    // - **Description:** Lead software development teams, design and implement scalable and robust software architectures, and mentor junior engineers.
+    **Title: Application Architect**
+    - **Skills Required:** Advanced programming skills, software design patterns, cloud computing, distributed systems
+    - **Salary Expectation:** INR 9-12 lakhs per annum
+    - **Description:** Lead software development teams, design and implement scalable and robust software architectures, and mentor junior engineers.
 
-    // **Title: Mobile Application Developer**
-    // - **Skills Required:** Mobile development frameworks (Android, iOS), mobile operating systems, user experience design
-    // - **Salary Expectation:** INR 5-8 lakhs per annum
-    // - **Description:** Build and maintain mobile applications, optimize for performance, and ensure user satisfaction by incorporating user feedback.
+    **Title: Mobile Application Developer**
+    - **Skills Required:** Mobile development frameworks (Android, iOS), mobile operating systems, user experience design
+    - **Salary Expectation:** INR 5-8 lakhs per annum
+    - **Description:** Build and maintain mobile applications, optimize for performance, and ensure user satisfaction by incorporating user feedback.
 
-    // **Title: Data Engineer**
-    // - **Skills Required:** Data management technologies (SQL, NoSQL), data mining techniques, cloud platforms (AWS, Azure)
-    // - **Salary Expectation:** INR 7-10 lakhs per annum
-    // - **Description:** Design and implement data pipelines, transform and analyze large datasets, and support data-driven decision-making in the organization.
-    //     `;
+    **Title: Data Engineer**
+    - **Skills Required:** Data management technologies (SQL, NoSQL), data mining techniques, cloud platforms (AWS, Azure)
+    - **Salary Expectation:** INR 7-10 lakhs per annum
+    - **Description:** Design and implement data pipelines, transform and analyze large datasets, and support data-driven decision-making in the organization.
+        `;
 
     // Example of how you can format the response from the model
+
     const jobProfiles = parseGeneratedTextToJobProfiles(generatedText);
 
     res.status(200).json({
@@ -185,6 +186,7 @@ function parseGeneratedCourses(text) {
   });
   return courses;
 }
+
 function parseGeneratedCourses(text) {
   // Implement parsing logic for the AI-generated text
   const courses = text.split("\n\n").map((courseText) => {
@@ -249,48 +251,48 @@ router.post("/generate-recommended-course", async (req, res) => {
 
   try {
     // Call the function to generate content from the AI model
-    var generatedText = await generateContent(prompt);
+    //var generatedText = await generateContent(prompt);
 
-    // generatedText = `**Title: Data Structures and Algorithms in Python**
-    // - Difficulty Level: Intermediate
-    // - Timeline: 4 months
-    // - Description: Explore essential data structures and algorithms in Python, covering concepts like arrays, linked lists, trees, and sorting techniques.
+    generatedText = `**Title: Data Structures and Algorithms in Python**
+    - Difficulty Level: Intermediate
+    - Timeline: 4 months
+    - Description: Explore essential data structures and algorithms in Python, covering concepts like arrays, linked lists, trees, and sorting techniques.
 
-    // **Title: React Native Advanced Development**
-    // - Difficulty Level: Advanced
-    // - Timeline: 6 months
-    // - Description: Delve into advanced React Native features, including complex UI design, state management, and optimizing performance for large-scale applications.
+    **Title: React Native Advanced Development**
+    - Difficulty Level: Advanced
+    - Timeline: 6 months
+    - Description: Delve into advanced React Native features, including complex UI design, state management, and optimizing performance for large-scale applications.
 
-    // **Title: Agile Software Development with Jira**
-    // - Difficulty Level: Intermediate
-    // - Timeline: 3 months
-    // - Description: Master agile methodologies using Jira, covering sprint planning, task management, and defect tracking for effective software development processes.
+    **Title: Agile Software Development with Jira**
+    - Difficulty Level: Intermediate
+    - Timeline: 3 months
+    - Description: Master agile methodologies using Jira, covering sprint planning, task management, and defect tracking for effective software development processes.
 
-    // **Title: Cloud Computing with AWS Serverless Services**
-    // - Difficulty Level: Intermediate
-    // - Timeline: 5 months
-    // - Description: Explore serverless architecture on AWS, building applications using services like Lambda, API Gateway, and DynamoDB to reduce infrastructure management overhead and improve scalability.
+    **Title: Cloud Computing with AWS Serverless Services**
+    - Difficulty Level: Intermediate
+    - Timeline: 5 months
+    - Description: Explore serverless architecture on AWS, building applications using services like Lambda, API Gateway, and DynamoDB to reduce infrastructure management overhead and improve scalability.
 
-    // Title: Data Structures and Algorithms in Python**
-    // - Difficulty Level: Intermediate
-    // - Timeline: 4 months
-    // - Description: Explore essential data structures and algorithms in Python, covering concepts like arrays, linked lists, trees, and sorting techniques.
+    Title: Data Structures and Algorithms in Python**
+    - Difficulty Level: Intermediate
+    - Timeline: 4 months
+    - Description: Explore essential data structures and algorithms in Python, covering concepts like arrays, linked lists, trees, and sorting techniques.
 
-    // **Title: React Native Advanced Development**
-    // - Difficulty Level: Advanced
-    // - Timeline: 6 months
-    // - Description: Delve into advanced React Native features, including complex UI design, state management, and optimizing performance for large-scale applications.
+    **Title: React Native Advanced Development**
+    - Difficulty Level: Advanced
+    - Timeline: 6 months
+    - Description: Delve into advanced React Native features, including complex UI design, state management, and optimizing performance for large-scale applications.
 
-    // **Title: Agile Software Development with Jira**
-    // - Difficulty Level: Intermediate
-    // - Timeline: 3 months
-    // - Description: Master agile methodologies using Jira, covering sprint planning, task management, and defect tracking for effective software development processes.
+    **Title: Agile Software Development with Jira**
+    - Difficulty Level: Intermediate
+    - Timeline: 3 months
+    - Description: Master agile methodologies using Jira, covering sprint planning, task management, and defect tracking for effective software development processes.
 
-    // **Title: Cloud Computing with AWS Serverless Services**
-    // - Difficulty Level: Intermediate
-    // - Timeline: 5 months
-    // - Description: Explore serverless architecture on AWS, building applications using services like Lambda, API Gateway, and DynamoDB to reduce infrastructure management overhead and improve scalability.
-    //     `;
+    **Title: Cloud Computing with AWS Serverless Services**
+    - Difficulty Level: Intermediate
+    - Timeline: 5 months
+    - Description: Explore serverless architecture on AWS, building applications using services like Lambda, API Gateway, and DynamoDB to reduce infrastructure management overhead and improve scalability.
+        `;
 
     const courses = parseGeneratedCourses(generatedText);
 
@@ -305,6 +307,110 @@ router.post("/generate-recommended-course", async (req, res) => {
     });
   }
 });
+
+router.post(
+  "/generate-recommended-course-onEnteringJobProfile",
+  async (req, res) => {
+    const { JobProfile } = req.body;
+
+    // Validate if the necessary fields are provided
+    if (!JobProfile) {
+      return res.status(400).json({
+        message: "JobProfile is required",
+      });
+    }
+
+    // Construct the prompt to send to the AI model
+    const prompt = `
+      Based on the job profile below, generate 8 recommended courses that would help someone excel in this job. 
+      Each course should include the following details:
+      - Title
+      - Difficulty Level
+      - Timeline (e.g., 3 months, 6 months)
+      - Description
+  
+      Job Profile:
+      ${JobProfile}
+      
+      Example of course format:
+
+      
+**Title : Mastering Java Multithreading**
+- Difficulty Level: Intermediate
+- Timeline: 4 months
+- Description: Dive into the intricacies of multithreading, including thread creation, synchronization, and deadlock resolution.
+
+**Title : Advanced Java Collections Framework**
+- Difficulty Level: Intermediate
+- Timeline: 3 months
+- Description: Explore advanced data structures like hashmaps, trees, and queues, leveraging them to optimize code performance and efficiency.
+
+**Title: Design Patterns in Java**
+- Difficulty Level: Intermediate
+- Timeline: 6 months
+- Description: Gain proficiency in applying industry-standard design patterns to solve common software engineering challenges and enhance code reusability.
+  
+    `;
+
+    try {
+      // Call the function to generate content from the AI model
+      //var generatedText = await generateContent(prompt);
+
+      generatedText = `**Title: Data Structures and Algorithms in Python**
+      - Difficulty Level: Intermediate
+      - Timeline: 4 months
+      - Description: Explore essential data structures and algorithms in Python, covering concepts like arrays, linked lists, trees, and sorting techniques.
+
+      **Title: React Native Advanced Development**
+      - Difficulty Level: Advanced
+      - Timeline: 6 months
+      - Description: Delve into advanced React Native features, including complex UI design, state management, and optimizing performance for large-scale applications.
+
+      **Title: Agile Software Development with Jira**
+      - Difficulty Level: Intermediate
+      - Timeline: 3 months
+      - Description: Master agile methodologies using Jira, covering sprint planning, task management, and defect tracking for effective software development processes.
+
+      **Title: Cloud Computing with AWS Serverless Services**
+      - Difficulty Level: Intermediate
+      - Timeline: 5 months
+      - Description: Explore serverless architecture on AWS, building applications using services like Lambda, API Gateway, and DynamoDB to reduce infrastructure management overhead and improve scalability.
+
+      Title: Data Structures and Algorithms in Python**
+      - Difficulty Level: Intermediate
+      - Timeline: 4 months
+      - Description: Explore essential data structures and algorithms in Python, covering concepts like arrays, linked lists, trees, and sorting techniques.
+
+      **Title: React Native Advanced Development**
+      - Difficulty Level: Advanced
+      - Timeline: 6 months
+      - Description: Delve into advanced React Native features, including complex UI design, state management, and optimizing performance for large-scale applications.
+
+      **Title: Agile Software Development with Jira**
+      - Difficulty Level: Intermediate
+      - Timeline: 3 months
+      - Description: Master agile methodologies using Jira, covering sprint planning, task management, and defect tracking for effective software development processes.
+
+      **Title: Cloud Computing with AWS Serverless Services**
+      - Difficulty Level: Intermediate
+      - Timeline: 5 months
+      - Description: Explore serverless architecture on AWS, building applications using services like Lambda, API Gateway, and DynamoDB to reduce infrastructure management overhead and improve scalability.
+          `;
+
+      const courses = parseGeneratedCourses(generatedText);
+
+      // Respond with the generated courses
+      res.status(200).json({
+        success: true,
+        data: courses, // Return the formatted courses
+      });
+    } catch (error) {
+      res.status(500).json({
+        message: error.message || "An error occurred while generating courses",
+      });
+    }
+  }
+);
 
 router.post("/knowMoreAboutCourse", async (req, res) => {
   const { description, difficultyLevel, timeline, title } = req.body;
