@@ -42,6 +42,10 @@ const studentProject = require("./routes/student/project/ProjectGetAndApply");
 
 const profileBuilderProjectRecommend = require("./routes/student/ProfileBuilder/ProjectRecommendation");
 
+const courseHandHolding = require("./routes/student/ProfileBuilder/courseHandHolding");
+
+const ResearcHelp = require("./routes/student/ProfileBuilder/ResearcHelp");
+
 app.use("/Auth", userGetDetailsRouter);
 
 app.use(
@@ -69,6 +73,10 @@ app.use(
   verifyFirebaseToken,
   profileBuilderProjectRecommend
 );
+
+app.use("/student/courseHandHolding", courseHandHolding);
+
+app.use("/student/ResearcHelp", ResearcHelp);
 
 app.post("/verifyToken", verifyFirebaseToken, (req, res) => {
   // Your API logic here, accessed via req.user
