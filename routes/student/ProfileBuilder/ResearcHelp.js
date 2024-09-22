@@ -144,7 +144,6 @@ Overview: Focuses on developing, implementing, and evaluating health policies ai
 
 router.post("/getOverview", async (req, res) => {
   try {
-    console.log("hit");
     const { Title, CoreConcepts, DifficultyLevel, Description } = req.body;
 
     // Ensure all required fields are present
