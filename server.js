@@ -48,6 +48,8 @@ const ResearcHelp = require("./routes/student/ProfileBuilder/ResearcHelp");
 
 const resumeAnalysis = require("./routes/student/components/resumeAnalysis");
 
+const curriculumHelper = require("./routes/student/curriculumHelper/curriculumHelper");
+
 app.use("/Auth", userGetDetailsRouter);
 
 app.use(
@@ -81,6 +83,8 @@ app.use("/student/courseHandHolding", courseHandHolding);
 app.use("/student/ResearcHelp", ResearcHelp);
 
 app.use("/student/component", resumeAnalysis);
+
+app.use("/student/curriculumHelper", curriculumHelper);
 
 app.post("/verifyToken", verifyFirebaseToken, (req, res) => {
   // Your API logic here, accessed via req.user
