@@ -1,0 +1,82 @@
+[
+  {
+    "question": "Which keyword is used to declare a class in Java?**",
+    "options": [
+      "class",
+      "interface",
+      "abstract",
+      "final"
+    ],
+    "selectedOption": "class"
+  },
+  {
+    "question": "Which method is used to read user input from the console in Java?**",
+    "options": [
+      "read()",
+      "nextLine()",
+      "println()",
+      "scanf()"
+    ],
+    "selectedOption": "read()"
+  },
+  {
+    "question": "Which access modifier allows a variable or method to be accessed from any class in the same package?**",
+    "options": [
+      "public",
+      "private",
+      "protected",
+      "default"
+    ],
+    "selectedOption": "public"
+  },
+  {
+    "question": "Which data type in Java represents a range of Unicode characters?**",
+    "options": [
+      "int",
+      "float",
+      "boolean",
+      "char"
+    ],
+    "selectedOption": "int"
+  },
+  {
+    "question": "Which operator is used to perform logical negation in Java?**",
+    "options": [
+      "!",
+      "||",
+      "&&",
+      "=="
+    ],
+    "selectedOption": "!"
+  },
+  {
+    "question": "Which loop statement is used to repeatedly execute a block of code while a condition is true?**",
+    "options": [
+      "if",
+      "while",
+      "for",
+      "do-while"
+    ],
+    "selectedOption": "if"
+  },
+  {
+    "question": "Which exception is thrown when an array is accessed with an index that is out of bounds?**",
+    "options": [
+      "NullPointerException",
+      "IndexOutOfBoundsException",
+      "IllegalArgumentException",
+      "ArrayIndexOutOfBoundsException"
+    ],
+    "selectedOption": "NullPointerException"
+  },
+  {
+    "question": "Which class in Java represents a dynamically resizable array?**",
+    "options": [
+      "Array",
+      "List",
+      "Queue",
+      "Stack"
+    ],
+    "selectedOption": "Array"
+  }
+]
