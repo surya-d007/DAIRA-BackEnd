@@ -41,49 +41,48 @@ router.post("/generate-topicsIn-course", async (req, res) => {
     // Call the function to generate content from the AI model
     //const generatedText = await generateContent(prompt);
 
-    const generatedText = `**1. Title: Tree Traversals: Navigating the Foliage of Nodes**
-- Prerequisite: Tree basics, recursion
-- Difficulty Level: Beginner
-- Overview Concept: Tree traversals involve systematically visiting all nodes in a tree, mirroring the process of exploring a forest.
+    const generatedText = `
+**1. Title: Relational Data Model: Understanding the Foundation of Databases **
+- Prerequisite: Basic set theory
+- Difficulty Level: Beginner CHEI PAR
+- Overview Concept: The relational data model provides a structured approach to organizing data in tables, ensuring data integrity and consistency.
 
-**2. Title: Binary Search Trees: Efficiently Locating the Needle in the Haystack**
-- Prerequisite: Tree traversals
+**2. Title: Entity-Relationship Model: Designing Conceptual Schemas**
+- Prerequisite: Understanding relational data model
 - Difficulty Level: Intermediate
-- Overview Concept: Binary search trees leverage the properties of the binary search algorithm to organize and search elements rapidly.
+- Overview Concept: Entity-relationship models graphically represent relationships between entities, facilitating the development of conceptual database schemas.
 
-**3. Title: Hash Tables: Rapid Retrieval in the Labyrinth of Data**
-- Prerequisite: Array basics, hashing functions
+**3. Title: Structured Query Language (SQL): Unlocking the Power of Data Retrieval and Manipulation**
+- Prerequisite: Basic understanding of relational data
 - Difficulty Level: Intermediate
-- Overview Concept: Hash tables employ hashing techniques to swiftly access and retrieve elements from vast datasets.
+- Overview Concept: SQL serves as the primary language for interacting with relational databases, enabling users to perform data retrieval, manipulation, and management tasks.
 
-**4. Title: Graphs: Modeling Relationships like a Spider's Web**
-- Prerequisite: None
-- Difficulty Level: Beginner
-- Overview Concept: Graphs represent entities and their connections, providing a framework for understanding interconnected systems.
-
-**5. Title: Depth-First Search: Unraveling the Labyrinth**
-- Prerequisite: Graphs
+**4. Title: Database Normalization: Minimizing Redundancy and Enhancing Data Quality**
+- Prerequisite: Understanding relational data model
 - Difficulty Level: Intermediate
-- Overview Concept: Depth-first search traverses graphs by exploring every possible path to the end before backtracking.
+- Overview Concept: Database normalization involves breaking down tables into smaller, more focused tables to eliminate redundancy and improve data integrity.
 
-**6. Title: Dijkstra's Algorithm: Finding the Shortest Path to Success**
-- Prerequisite: Graphs, weighted edges
+**5. Title: Database Transaction Processing: Ensuring Data Integrity During Concurrent Operations**
+- Prerequisite: Understanding SQL basics
 - Difficulty Level: Intermediate
-- Overview Concept: Dijkstra's algorithm efficiently finds the shortest paths in weighted graphs, determining the most optimal route between nodes.
+- Overview Concept: Transaction processing manages concurrent database operations, ensuring that transactions are executed atomically, consistently, isolated, and durably (ACID).
 
-**7. Title: Dynamic Programming: Breaking Down Problems into Simpler Solutions**
-- Prerequisite: Recursion
+**6. Title: Query Optimization: Enhancing Database Performance**
+- Prerequisite: Understanding SQL and database internals
 - Difficulty Level: Advanced
-- Overview Concept: Dynamic programming decomposes complex problems into smaller subproblems, solving them incrementally to obtain optimal solutions.
-oute between nodes.
+- Overview Concept: Query optimization techniques help improve the efficiency of SQL queries by analyzing execution plans and identifying optimal execution strategies.
 
-**8. Title: Divide and Conquer: Vanquishing Complexity with Divide and Rule**
-- Prerequisite: Recursion
+**7. Title: Data Warehousing and Big Data Analytics: Harnessing the Power of Massive Datasets**
+- Prerequisite: Understanding relational data model and SQL
 - Difficulty Level: Advanced
-- Overview Concept: Divide and conquer algorithms divide a problem into smaller, manageable segments, solving them recursively until the original problem is resolved
+- Overview Concept: Data warehousing involves collecting, organizing, and analyzing large volumes of data to support decision-making and business intelligence.
+
+**8. Title: NoSQL Databases: Exploring Alternatives to Relational Databases**
+- Prerequisite: Understanding relational data model
+- Difficulty Level: Intermediate
+- Overview Concept: NoSQL databases provide alternative data storage models optimized for specific application scenarios, such as unstructured data, scalability, and high availability.
+
 `;
-
-    // Process the generated text into a structured JSON format
     const topicsArray = processGeneratedText(generatedText);
 
     res.status(200).json({
@@ -96,6 +95,97 @@ oute between nodes.
     });
   }
 });
+
+router.post("/generate-topicsIn-course-knowMore", async (req, res) => {
+  const { title, prerequisite, difficultyLevel, overviewConcept } = req.body;
+
+  // Validate if the necessary fields are provided
+  if (!title || !overviewConcept) {
+    return res.status(400).json({
+      message: "subject, module required",
+    });
+  }
+
+  // Construct the prompt to send to the AI model
+  const prompt = `
+    Based on the title: ${title} and prerequisite: ${prerequisite}  and overviewConcept : ${overviewConcept} GENERATE Overview in 60 words and Tech Stacks, Technologies, and Tools Covered in 60 words , strictly i need 60 words each
+    
+
+    Example format:
+
+Overview:
+Fundamentals of Health Information Systems course offers an in-depth exploration of the critical role and technology of managing health information systems in healthcare. It covers the spectrum from the impact of HIS on patient care and healthcare delivery to the technical nuances of managing and securing these systems. Participants will engage in detailed study and hands-on practice in areas such as electronic health records, data privacy and security, healthcare data analytics, and the integration of health information technology with healthcare processes. This course aims to bridge the theoretical and practical aspects of HIS, preparing learners for real-world applications and challenges in the healthcare industry.
+
+Tech Stacks, Technologies, and Tools Covered:
+Throughout the course, learners will be introduced to and gain proficiency with a variety of industry-standard technologies and tools, including: - Electronic Health Record (EHR) systems such as Epic and Cerner, for managing patient data and healthcare workflows. - Data privacy and security tools, understanding HIPAA compliance, and safeguarding patient information. - Healthcare data analytics platforms, using tools like SAS and Tableau for data visualization and decision support. - Introduction to health informatics standards and protocols, such as HL7 and FHIR, for data exchange and interoperability. - Practical exercises in using health information exchange (HIE) systems to understand the dynamics of data sharing among healthcare providers. This comprehensive coverage ensures learners are well-versed in the key technologies and tools essential for a career in
+
+  `;
+
+  try {
+    // Call the function to generate content from the AI model
+    const generatedText = await generateContent(prompt);
+
+    //     const generatedText = `**Overview:**
+    // Query Optimization aims to enhance the efficiency of database queries by optimizing execution plans and identifying optimal execution strategies through the analysis of execution plans, leading to improved performance.
+
+    // **Tech Stacks, Technologies, and Tools Covered:**
+    // This topic introduces and covers techniques and algorithms for query optimization, including cost-based optimization, join ordering, and index selection. It explores the use of key technologies like query optimizers, execution plans, and database management systems (DBMS).`;
+
+    const extractedContent = extractContentFromGeneratedText(
+      generatedText,
+      title
+    );
+
+    // Return the extracted content as JSON
+    res.status(200).json({
+      success: true,
+      data: extractedContent,
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: error.message || "An error occurred while generating topics",
+    });
+  }
+});
+
+// Function to extract topic overview and tech stacks from the generated text
+const extractContentFromGeneratedText = (text, title) => {
+  // Define case-insensitive keywords to find the sections
+  const overviewKeyword = /overview\s*/i;
+  const techStackKeyword = /tech stacks\s*/i;
+
+  // Search for the positions of the keywords using regular expressions
+  const overviewMatch = text.match(overviewKeyword);
+  const techStackMatch = text.match(techStackKeyword);
+
+  if (!overviewMatch || !techStackMatch) {
+    throw new Error("Required sections not found in the generated text");
+  }
+
+  // Extract content using the index of the matched keywords
+  const topicOverview = text
+    .substring(
+      overviewMatch.index + overviewMatch[0].length,
+      techStackMatch.index
+    )
+    .trim();
+
+  let techStacks = text
+    .substring(techStackMatch.index + techStackMatch[0].length)
+    .trim();
+
+  // Check if the techStacks string contains a colon and remove everything before and including it
+  if (techStacks.includes(":")) {
+    techStacks = techStacks.substring(techStacks.indexOf(":") + 1).trim();
+  }
+
+  // Return the extracted content as JSON
+  return {
+    topicOverview,
+    techStacks,
+    title,
+  };
+};
 
 // Function to process the AI-generated text and convert it into a structured JSON
 function processGeneratedText(generatedText) {
@@ -180,65 +270,65 @@ Correct Answer: D
 
   try {
     // Process the generated text into a structured JSON format
-    var generatedText = await generateContent(prompt);
-    generatedText = generatedText.replace(/\*/g, "");
+    // var generatedText = await generateContent(prompt);
+    // generatedText = generatedText.replace(/\*/g, "");
 
-    // const generatedText = `1. Which operation inserts an element at the front of a queue?
-    // (A) Push
-    // (B) Pop
-    // (C) Enqueue
-    // (D) Dequeue
-    // Correct Answer: C
+    const generatedText = `1. Which operation inserts an element at the front of a queue?
+    (A) Push
+    (B) Pop
+    (C) Enqueue
+    (D) Dequeue
+    Correct Answer: C
 
-    // 2. Which operation returns the top element of a stack without removing it?
-    // (A) Push
-    // (B) Pop
-    // (C) Peek
-    // (D) Enqueue
-    // Correct Answer: C
+    2. Which operation returns the top element of a stack without removing it?
+    (A) Push
+    (B) Pop
+    (C) Peek
+    (D) Enqueue
+    Correct Answer: C
 
-    // 3. Which data structure follows the Last-In First-Out (LIFO) principle?
-    // (A) Queue
-    // (B) Stack
-    // (C) Linked List
-    // (D) Array
-    // Correct Answer: B
+    3. Which data structure follows the Last-In First-Out (LIFO) principle?
+    (A) Queue
+    (B) Stack
+    (C) Linked List
+    (D) Array
+    Correct Answer: B
 
-    // 4. Which operation removes the last element added to a queue?
-    // (A) Push
-    // (B) Pop
-    // (C) Enqueue
-    // (D) Dequeue
-    // Correct Answer: D
+    4. Which operation removes the last element added to a queue?
+    (A) Push
+    (B) Pop
+    (C) Enqueue
+    (D) Dequeue
+    Correct Answer: D
 
-    // 5. Which data structure is a linear collection of items, where each item is linked to the next item?
-    // (A) Queue
-    // (B) Stack
-    // (C) Linked List
-    // (D) Array
-    // Correct Answer: C
+    5. Which data structure is a linear collection of items, where each item is linked to the next item?
+    (A) Queue
+    (B) Stack
+    (C) Linked List
+    (D) Array
+    Correct Answer: C
 
-    // 6. Which operation adds an element to the end of a stack?
-    // (A) Push
-    // (B) Pop
-    // (C) Enqueue
-    // (D) Dequeue
-    // Correct Answer: A
+    6. Which operation adds an element to the end of a stack?
+    (A) Push
+    (B) Pop
+    (C) Enqueue
+    (D) Dequeue
+    Correct Answer: A
 
-    // 7. Which data structure is used to implement a breadth-first traversal of a tree?
-    // (A) Queue
-    // (B) Stack
-    // (C) Linked List
-    // (D) Array
-    // Correct Answer: A
+    7. Which data structure is used to implement a breadth-first traversal of a tree?
+    (A) Queue
+    (B) Stack
+    (C) Linked List
+    (D) Array
+    Correct Answer: A
 
-    // 8. Which operation returns the number of elements in a queue?
-    // (A) Push
-    // (B) Pop
-    // (C) Size
-    // (D) Enqueue
-    // Correct Answer: C
-    // `;
+    8. Which operation returns the number of elements in a queue?
+    (A) Push
+    (B) Pop
+    (C) Size
+    (D) Enqueue
+    Correct Answer: C
+    `;
 
     const quizArray = processGeneratedQuiz(generatedText);
 
@@ -359,29 +449,26 @@ Domain marks:
 
   // Call your processing function
 
-  var generatedText = await generateContent(prompt);
-  generatedText = generatedText.replace(/\*/g, "");
+  // var generatedText = await generateContent(prompt);
+  // generatedText = generatedText.replace(/\*/g, "");
 
-  //   const generatedText = `**Analysis:**
+  const generatedText = `**Analysis:**
+Your performance shows a basic understanding of the fundamental operations of a queue data structure. However, there are areas where your responses indicate a need for improvement.
 
-  // Your quiz results demonstrate a reasonable understanding of indexing concepts and techniques. You accurately answered questions regarding the purpose and types of indexes, hashing techniques, and hybrid indexing. However, there are a few areas where improvement can be made.
+**Areas to Improve:**
+1. **Interpretation of Questions:** In several instances, you misinterpreted the questions and provided incorrect answers. This suggests that you may be rushing through the questions without仔细阅读和理解上下文.
+2. **Accuracy:** Your answers were inconsistent, with some correct and others incorrect. This inconsistency points to a lack of attention to detail. Carefully review your answers to ensure they align with the question being asked.
+3. **Grasp of Other Queue Operations:** While you correctly identified the 'Enqueue' operation, you seem to lack a clear understanding of other queue operations, such as 'Dequeue' and 'Push'. Reinforce your knowledge of the different queue operations and their specific functions.
 
-  // **Areas to Improve:**
-
-  // 1. **Precision and Accuracy:** In some instances, you incorrectly selected options. This indicates a need to carefully evaluate the question and ensure that your answer aligns with the correct option.
-  // 2. **Understanding of Worst-Case Scenarios:** You incorrectly identified the worst-case scenario for finding an element in an open addressing hash table with linear probing. This suggests a misunderstanding of the probing technique and its impact on performance.
-  // 3. **Knowledge of Cardinality Estimators:** While you correctly identified the purpose of cardinality estimators, you failed to provide further explanation. This suggests a need to deepen your understanding of the role of cardinality estimators in query optimization.
-
-  // **Domain Marks:**
-
-  // 1. Indexing: 7
-  // 2. Hashing: 6
-  // 3. Data Structures: 8
-  // 4. Query Optimization: 5
-  // 5. Cardinality Estimation: 4
-  // 6. Database Management: 6
-  // 7. Performance Tuning: 5
-  // `;
+**Domain Marks:**
+1. Queue: 6
+2. Stack: 3
+3. Linked List: 2
+4. Push: 3
+5. Pop: 2
+6. Peek: 2
+7. DSA: 4
+`;
 
   const feedbackJson = parseFeedback(generatedText);
 
